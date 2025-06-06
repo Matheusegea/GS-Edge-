@@ -1,6 +1,18 @@
 # 🌊 Monitor de Enchentes com Arduino
 
-Sistema embarcado baseado em Arduino para **monitoramento de umidade do solo** e **intensidade de chuva**, com alertas visuais (LEDs), sonoros (buzzer) e exibição em LCD.
+Sistema embarcado baseado em Arduino para monitoramento de umidade do solo e intensidade de chuva, com alertas visuais (LEDs), sonoros (buzzer) e exibição em LCD.
+
+---
+
+## 🧩 Descrição do Problema
+
+Enchentes e alagamentos causam sérios danos em áreas urbanas e rurais. A falta de monitoramento preventivo agrava esses problemas. Este projeto propõe um sistema simples e acessível para detectar condições de solo encharcado e chuva intensa, emitindo alertas visuais e sonoros para prevenir danos e agir rapidamente.
+
+---
+
+## 💡 Visão Geral da Solução
+
+Este sistema usa sensores para medir umidade do solo e intensidade de chuva simulada, exibindo os dados em um display LCD e acionando alertas conforme os níveis detectados.
 
 ---
 
@@ -20,69 +32,76 @@ Sistema embarcado baseado em Arduino para **monitoramento de umidade do solo** e
 
 ### 📊 Leitura dos Sensores
 
-- **Umidade do solo**: obtida via pino analógico A0 e convertida para percentual.
-- **Chuva**: simulada com sensor ultrassônico, medindo distância até gotas ou obstáculos.
+- **Umidade do solo:** Lida via pino analógico A0 e convertida para percentual.
+- **Chuva:** Simulada por um sensor ultrassônico que mede a distância até gotas ou obstáculos (menor distância = mais chuva).
 
 ### 💡 Lógica de Estado
 
 **Umidade do Solo:**
-- `< 30%` → **SECO**
-- `30% a 70%` → **NORMAL**
-- `> 70%` → **ALAGADO**
+- < 30% → `SECO`
+- 30% a 70% → `NORMAL`
+- > 70% → `ALAGADO`
 
-**Chuva (calculada via distância):**
-- `< 30%` → **Sem chuva**
-- `> 70%` → **Chuva intensa**
+**Chuva (com base na distância):**
+- > 70% (distância próxima) → `Chuva intensa`
+- < 30% (distância longa) → `Sem chuva`
 
----
-
-## 📺 Exibição no LCD
+### 📺 Exibição no LCD
 
 O display LCD alterna automaticamente entre duas telas a cada 3 segundos:
 
-1. **Status do Solo:**
-   - Mostra o percentual de umidade e o estado atual (SECO / NORMAL / ALAGADO)
+1. **Status do Solo**
+   - Percentual de umidade
+   - Estado: SECO / NORMAL / ALAGADO
 
-2. **Status da Chuva:**
-   - Exibe o percentual estimado de chuva e alerta se estiver acima de 70%
+2. **Status da Chuva**
+   - Estimativa de chuva
+   - Alerta se > 70%
+
+### 🔊 Alertas Sonoros e Visuais
+
+#### 🎵 Buzzer
+- 1000 Hz → Solo alagado
+- 800 Hz → Chuva intensa
+- Desligado → Sem alerta
+
+#### 💡 LEDs
+- 🔴 Vermelho → Solo alagado **e** chuva intensa
+- 🟡 Amarelo → Solo seco **e** chuva intensa
+- 🟢 Verde → Situação normal
 
 ---
 
-## 🔊 Alertas Sonoros e Visuais
+## 🧪 Guia de Simulação (Wokwi)
 
-### 🎵 Buzzer
-- **1000 Hz**: solo alagado
-- **800 Hz**: chuva intensa
-- **Desligado**: sem alerta
-
-### 💡 LEDs
-- 🔴 **LED Vermelho**: Solo alagado **e** chuva intensa
-- 🟡 **LED Amarelo**: Solo seco **e** chuva intensa
-- 🟢 **LED Verde**: Situação normal (sem chuva forte)
+1. Acesse o projeto no Wokwi: [**Clique aqui para simular**](https://wokwi.com/projects/432982618749359105)
+2. Gire o potenciômetro para simular diferentes níveis de umidade.
+3. Aproxime objetos do sensor ultrassônico para simular chuva (menor distância = chuva intensa).
+4. Observe a mudança de estado no LCD, o acionamento do buzzer e os LEDs.
 
 ---
 
-## 🧪 Simulação e Testes
+## 🎥 Demonstração em Vídeo
 
-- Umidade do solo pode ser simulada com **potenciômetro**.
-- Chuva simulada aproximando objetos do **HC-SR04** (menor distância = mais chuva).
+Veja o projeto em funcionamento no vídeo abaixo:  
+[**Assista no YouTube**](---------------)
 
 ---
 
 ## 💡 Melhorias Futuras
 
-- Envio de dados para nuvem (ESP8266 ou ESP32)
-- Histórico de medições em cartão SD ou interface web
-- Painel solar para alimentação autônoma
-- Integração com aplicativos móveis
+- Envio de dados para a nuvem via ESP8266/ESP32
+- Registro de histórico em cartão SD ou via interface web
+- Alimentação por energia solar
+- Integração com apps móveis (ex: notificações via celular)
 
 ---
 
 ## 🧭 Aplicações Possíveis
 
-- Sistemas de irrigação inteligente
-- Monitoramento de áreas urbanas com risco de alagamento
-- Educação e prototipagem em eletrônica e IoT
+- Sistemas de irrigação inteligentes
+- Monitoramento de enchentes em áreas urbanas
+- Projetos educacionais de eletrônica e IoT
 
 ---
 
@@ -94,4 +113,4 @@ Este projeto é open-source e pode ser utilizado, modificado e distribuído livr
 
 ## Autor
 
-Desenvolvido por **[Matheus Tozarelli Egea (RM: 563490)]**
+Desenvolvido por **Matheus Tozarelli Egea (RM: 563490)**
