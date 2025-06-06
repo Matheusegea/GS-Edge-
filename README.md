@@ -78,7 +78,7 @@ O display alterna entre duas telas a cada 3 segundos:
 ## 🎥 Demonstração em Vídeo
 
 Assista ao funcionamento do projeto no vídeo abaixo:  
-[**Ver vídeo demonstrativo**](--------)
+[**Ver vídeo demonstrativo**](https://youtu.be/Kh0SZvoH8O0)
 
 ---
 
